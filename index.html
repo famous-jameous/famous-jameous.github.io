@@ -3,160 +3,936 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S&P 500 Index Fee Analyzer</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <title>Cesare's Quality Water Solutions</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            scroll-behavior: smooth;
         }
-        h1 {
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="water" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%2300d4ff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%231e3c72;stop-opacity:0.3"/></radialGradient></defs><rect width="1200" height="800" fill="url(%23water)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
             text-align: center;
-            color: #4CAF50;
+            padding: 12rem 2rem 8rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
-        .form-group {
-            margin-bottom: 15px;
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%2300d4ff" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="%2300d4ff" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/></circle><circle cx="40" cy="70" r="1" fill="%2300d4ff" opacity="0.4"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/></circle></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            border-radius: 2px;
+        }
+
+        /* Featured Section - Specific styles for featured cards */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .featured-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-card-image img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; 
+              display: block;
+        }
+
+        .featured-card-icon {
+            font-size: 4rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .featured-card-content {
+            padding: 1.5rem;
+        }
+
+        .featured-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+
+        .featured-card-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .featured-card-footer {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        label {
+
+        .featured-price {
+            font-size: 1.3rem;
             font-weight: bold;
-            width: 100px;
+            color: #1e3c72;
         }
-        input[type="text"] {
-            width: 200px;
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+
+        .featured-price-note {
+            font-size: 0.8rem;
+            color: #888;
         }
-        button {
-            background-color: #4CAF50;
+
+        .featured-cta {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
             color: white;
-            padding: 10px 20px;
+            padding: 0.6rem 1.2rem;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-        button:hover {
-            background-color: #45a049;
+
+        .featured-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
         }
-        .output-box {
-            margin-top: 20px;
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }                    
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .about-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .about-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
             text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
         }
-        th {
-            background-color: #4CAF50;
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
         }
-        .export-btn {
-            float: right;
-            margin-top: 10px;
-            background-color: #2196F3;
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
+<!-- Replicated Yoast SEO plugin (Wordpress) via: http://customwaterfiltration.com -->
+
+<meta name="description" content="customwaterfiltration.com">
+<link rel="canonical" href="http://customwaterfiltration.com/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cesare's Quality Water Solutions">
+<meta property="og:description" content="customwaterfiltration.com">
+<meta property="og:url" content="http://customwaterfiltration.com/">
+<meta property="og:site_name" content="Cesare's Quality Water Solutions">
+<meta name="twitter:card" content="summary_large_image">
+
 </head>
 <body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">Cesare's Quality Water Solutions</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#featured">Featured</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact" class="contact-btn">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <div class="container">
-        <h1>S&P 500 Index Fee Analyzer</h1>
-        
-        <!-- Form for User Inputs -->
-        <div class="form-group">
-            <label for="init">INITIAL INVESTMENT</label>
-            <input type="text" id="init" placeholder="Enter value for INIT">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Pure Water, Pure Life</h1>
+            <p>Transform your home's water quality with our premium purification systems. Experience the difference of truly clean, safe, and great-tasting water for your family.</p>
+            <a href="#contact" class="cta-button">Get Your Free Water Test</a>
         </div>
-        
-        <div class="form-group">
-            <label for="fee">FEE (BASIS POINTS)</label>
-            <input type="text" id="fee" placeholder="Enter fee in BIPS">
-        </div>
-        
-        <div style="text-align: center;">
-            <button onclick="calculate()">Calculate</button>
-        </div>
+    </section>
 
-        <!-- Output Display Area -->
-        <div class="output-box">
-            <button class="export-btn" onclick="exportToExcel()">Export</button>
-            <table id="resultTable">
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th>% Return</th>
-                        <th>Total($)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data will be inserted here dynamically -->
-                </tbody>
-            </table>
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Whole House Filtration</h3>
+                    <p>Complete water treatment solutions that purify every drop of water entering your home, ensuring clean water from every tap.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Reverse Osmosis Systems</h3>
+                    <p>Advanced filtration technology that removes up to 99% of contaminants, providing the purest drinking water possible.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>UV Sterilization</h3>
+                    <p>Chemical-free water disinfection that eliminates bacteria, viruses, and other harmful microorganisms effectively.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Water Softeners</h3>
+                    <p>Eliminate hard water problems, protect your appliances, and enjoy softer skin and hair with our premium softening systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Free Water Testing</h3>
+                    <p>Comprehensive water quality analysis to identify contaminants and recommend the perfect purification solution for your home.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3>Maintenance & Service</h3>
+                    <p>Regular maintenance and support services to keep your water purification systems running at peak performance year-round.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="section featured" id="featured">
+        <div class="container">
+            <h2 class="section-title">Featured</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                      <img src="https://t97znj-bi.myshopify.com/cdn/shop/files/phhhhhh_0fd811d7-ed58-4cd8-80f8-281cc0095604.jpg?v=1731124058&width=823" alt="Water Purification System" />
+                        
+                    </div>
+                    <div class="featured-card-content">
+                        <h3>2 cu ft Digital KL2000 System 2510</h3>
+                        <p class="featured-card-description">Complete whole-house filtration system with UV sterilization and water softening. Perfect for families of 4-6 people.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                        <div>
+                          
+                            <div class="featured-price">$4,099.99</div>
+                            <div class="featured-price-note">Installation included</div>
+                        </div>
+                        <a href="#contact" class="featured-cta">Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"> 
+                        <img src="https://t97znj-bi.myshopify.com/cdn/shop/files/2510SXT-AI__67539.jpg?v=1731122245&width=360" alt="2510 Digital Air Injection Control Head" />
+                    </div>
+                    <div class="featured-card-content">
+                        <h3>2510 Digital Air Injection Control Head</h3>
+                        <p class="featured-card-description">Under-sink reverse osmosis system plus shower filtration. Ideal for apartments and smaller homes.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                        <div>
+                            <div class="featured-price">$1,299.99</div>
+                            <div class="featured-price-note">2-year warranty</div>
+                        </div>
+                        <a href="#contact" class="featured-cta">Get Quote</a>
+                    </div>
+                </div>
+                
+                <div class="featured-card">
+                    <div class="featured-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        
+                    </div>
+                    <div class="featured-card-content">
+                        <h3>Water Testing Service</h3>
+                        <p class="featured-card-description">Comprehensive 32-point water analysis with detailed report and personalized recommendations.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                        <div>
+                            <div class="featured-price">FREE</div>
+                            <div class="featured-price-note">No obligation</div>
+                        </div>
+                        <a href="#contact" class="featured-cta">Schedule Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div>
+                    <div class="about-text">
+                        <p>We specialize in providing custom-built solutions for water softening, filtering, reverse osmosis, UV light treatment, and detergent-less washing. Our team can help assist and recommend the best option to meet your specific requirements. Whether it’s for commercial, industrial, or residential use, we have the expertise to design and install the right system for you. Trust us to deliver high-quality water solutions that improve the quality of your water while also saving you money in the long run. Contact us today for a consultation.</p>
+                        <br>
+             
+                        <p>Our team of certified water treatment professionals uses state-of-the-art technology and premium equipment to address all your water quality concerns. From initial testing to system installation and ongoing maintenance, we're committed to delivering exceptional service and results.</p>
+                    </div>
+                    
+                    <ul class="about-features">
+                        <li>Licensed and insured professionals</li>
+                        <li>15+ years of industry experience</li>
+                        <li>Premium quality equipment and parts</li>
+                        <li>Comprehensive warranty coverage</li>
+                        <li>24/7 emergency service available</li>
+                        <li>Flexible financing options</li>
+                    </ul>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Customer Satisfaction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Emergency Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>Get Your Free Quote</h3>
+                    <form id="contactForm" action="https://formsubmit.co/aesirconsult@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; background: rgba(255,255,255,0.9); color: #333; font-size: 1rem;">
+                                <option value="">Select a service</option>
+                                <option value="water-testing">Free Water Testing</option>
+                                <option value="whole-house">Whole House Filtration</option>
+                                <option value="reverse-osmosis">Reverse Osmosis System</option>
+                                <option value="water-softener">Water Softener</option>
+                                <option value="uv-sterilization">UV Sterilization</option>
+                                <option value="maintenance">Maintenance & Service</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your water quality concerns..."></textarea>
+                        </div>
+                        
+                        <!-- Example FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Water Purification Inquiry">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://aquapure-thank-you.netlify.app">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <strong>724-708-8816</strong><br>
+                                Available 24/7 
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <strong>aesirconsult@gmail.com</strong><br>
+                                Response within 24 hours
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🕒</div>
+                            <div>
+                                <strong>Mon-Fri: 8AM-6PM</strong><br>
+                                Weekend service available
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                        <h3 style="margin-bottom: 1rem;"> Service Areas</h3>
+                        <p>Proudly serving Pittsburgh and surrounding areas including Allegheny County, Westmoreland County, and Washington County.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Cesare's Quality Water Solutions. All rights reserved. | Licensed & Insured | PA License #JMM2025</p>
+        </div>
+    </footer>
 
     <script>
-        const spReturns = {
-            2000: -9.11, 2001: -11.98, 2002: -22.27, 2003: 28.72, 2004: 10.82, 
-            2005: 4.79, 2006: 15.74, 2007: 5.46, 2008: -37.22, 2009: 27.11, 
-            2010: 14.87, 2011: 2.07, 2012: 15.88, 2013: 32.43, 2014: 13.81, 
-            2015: 1.31, 2016: 11.93, 2017: 21.94, 2018: -4.41, 2019: 31.74, 
-            2020: 18.38, 2021: 28.83, 2022: -18.11, 2023: 26.29, 2024: 25.02 
-        };
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-        function calculate() {
-            const init = parseFloat(document.getElementById('init').value);
-            const fee = parseFloat(document.getElementById('fee').value) / 10000;
-            const tableBody = document.getElementById('resultTable').getElementsByTagName('tbody')[0];
-
-            if (isNaN(init) || isNaN(fee)) {
-                alert("Please enter valid numbers for Initial Investment and Fee.");
-                return;
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 60, 114, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                header.style.backdropFilter = 'none';
             }
+        });
 
-            let total = init;
-            tableBody.innerHTML = ""; // Clear previous results
+        // Form submission is now handled by FormSubmit
+        // The form will automatically redirect after submission
+        
+        // Optional: Add loading state when form is submitted
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // FormSubmit will handle the actual submission and redirect
+            // This just provides visual feedback
+        });
 
-            for (let year = 2000; year <= 2024; year++) {
-                const annualReturn = spReturns[year];
-                total = total * (1 + annualReturn / 100) * (1 - fee);
-
-                let row = tableBody.insertRow();
-                row.insertCell(0).innerText = year;
-                row.insertCell(1).innerText = annualReturn.toFixed(2) + "%";
-                row.insertCell(2).innerText = total.toFixed(2);
-            }
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .stat-item, .featured-card');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
         }
 
-        function exportToExcel() {
-            let table = document.getElementById('resultTable');
-            let ws = XLSX.utils.table_to_sheet(table);
-            let wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Investment Growth");
-            XLSX.writeFile(wb, "SP500_Investment_Calculations.xlsx");
-        }
+        // Initialize animation styles
+        document.querySelectorAll('.service-card, .stat-item, .featured-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+        });
+
+        // Listen for scroll events
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Run animation check on load
+        animateOnScroll();
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
-
 </body>
 </html>
