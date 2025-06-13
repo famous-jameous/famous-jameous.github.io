@@ -21,7 +21,9 @@ body {
     font-family: sans-serif;
 }
 
-
+html {
+  scroll-behavior: smooth;
+}
 
 /* off-screen-menu */
 .off-screen-menu {
