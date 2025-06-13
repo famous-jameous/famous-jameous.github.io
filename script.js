@@ -1,7 +1,4 @@
 
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navMenu').classList.toggle('active');
-});
 
 window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('blogCarousel');
@@ -24,6 +21,13 @@ window.addEventListener('DOMContentLoaded', () => {
   prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + cards.length) % cards.length;
     scrollToCard(currentIndex);
+  });
+
+const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+
+  hamburger?.addEventListener('click', () => {
+    navMenu?.classList.toggle('active');
   });
 });
 
