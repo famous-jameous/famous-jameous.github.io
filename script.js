@@ -1,42 +1,24 @@
 window.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('blogCarousel');
+  const cards = carousel.querySelectorAll('.blog-card');
   const nextBtn = document.getElementById('blogNext');
   const prevBtn = document.getElementById('blogPrev');
 
-  const cardWidth = 324; // Adjust based on your actual card size + gap
-  
-  let position = 0;
-  const totalCards = carousel.children.length;
+  let currentIndex = 0;
 
-  // Clone first and last card for infinite effect
-  const firstCard = carousel.children[0].cloneNode(true);
-  const lastCard = carousel.children[totalCards - 1].cloneNode(true);
-  carousel.appendChild(firstCard);
-  carousel.insertBefore(lastCard, carousel.children[0]);
-
-  // Adjust scroll to account for the cloned first card
-  carousel.scrollLeft = cardWidth;
+  function scrollToCard(index) {
+    const cardWidth = carousel.offsetWidth;
+    carousel.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+  }
 
   nextBtn.addEventListener('click', () => {
-    carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
-
-    setTimeout(() => {
-      // If at end (past real last), reset to first
-      if (carousel.scrollLeft >= (cardWidth * (totalCards))) {
-        carousel.scrollLeft = cardWidth;
-      }
-    }, 300); // delay must match scroll animation duration
+    currentIndex = (currentIndex + 1) % cards.length;
+    scrollToCard(currentIndex);
   });
 
   prevBtn.addEventListener('click', () => {
-    carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-
-    setTimeout(() => {
-      // If at beginning (before real first), reset to last
-      if (carousel.scrollLeft <= 0) {
-        carousel.scrollLeft = cardWidth * totalCards;
-      }
-    }, 300);
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    scrollToCard(currentIndex);
   });
 });
 
