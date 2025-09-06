@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Hover Demo</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Card Pages (3×5 × 10)</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="card-grid">
-    <div class="card">
-      <img src="assets/8_Ball.webp" alt="Joker Card 1">
-      <div class="card-info">8 Ball</div>
-    </div>
+  <main class="stage">
+    <section class="panel">
+      <div id="cardGrid" class="card-grid" aria-live="polite"></div>
 
-    <div class="card">
-      <img src="assets/Abstract_Joker.webp" alt="Joker Card 2">
-      <div class="card-info">Abstract Joker</div>
-    </div>
+      <!-- Pagination bar -->
+      <div class="pagebar">
+        <button id="prevBtn" class="nav-btn" aria-label="Previous page">
+          &#9664;
+        </button>
+        <div id="pageLabel" class="page-label">Page 1/10</div>
+        <button id="nextBtn" class="nav-btn" aria-label="Next page">
+          &#9654;
+        </button>
+      </div>
 
-    <div class="card">
-      <img src="assets/Acrobat.webp" alt="Joker Card 3">
-      <div class="card-info">Acrobat</div>
-    </div>
-  </div>
+      <!-- (Optional) Back button stub, style only -->
+      <!-- <button class="back-btn" type="button">Back</button> -->
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
