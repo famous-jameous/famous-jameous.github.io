@@ -1,0 +1,65 @@
+/* General page background & layout */
+body {
+  background: linear-gradient(135deg, #1a1a1a, #333); /* subtle dark gradient */
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Grid layout for cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 30px;
+  padding: 40px;
+}
+
+/* Card container */
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Card images */
+.card img {
+  width: 180px;       /* consistent card width */
+  height: 252px;      /* 7:10 aspect ratio */
+  object-fit: cover;  /* avoids stretching */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Tooltip (hidden by default) */
+.card-info {
+  position: absolute;
+  bottom: 110%; /* above the card */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover effect: zoom + lift */
+.card:hover img {
+  transform: scale(1.15) translateY(-12px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
+}
+
+.card:hover .card-info {
+  opacity: 1;
+}
