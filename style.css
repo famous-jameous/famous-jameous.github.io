@@ -114,7 +114,7 @@ body{
   height: 36px;
   border: none;
   border-radius: 10px;
-  background: #23323b;
+  background: var(--accent);
   color: #fff;
   font-size: 18px;
   cursor: pointer;
@@ -146,5 +146,6 @@ body{
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
