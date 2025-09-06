@@ -1,65 +1,148 @@
-/* General page background & layout */
-body {
-  background: linear-gradient(135deg, #1a1a1a, #333); /* subtle dark gradient */
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+/* Background + centering */
+:root{
+  --card-w: 180px;
+  --card-h: 252px;      /* ~7:10 ratio */
+  --gap: 24px;
+  --panel-pad: 28px;
+  --accent: #e1524b;    /* red page bar */
+  --panel: #22323c;     /* dark blue-gray panel */
+  --panel-edge: #1a252c;
+}
+* { box-sizing: border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:#eee;
+  background: radial-gradient(1200px 700px at 60% 40%, #3a4a54 0%, #202629 50%, #131516 100%);
 }
 
-/* Grid layout for cards */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 30px;
-  padding: 40px;
+.stage{
+  display:grid;
+  place-items:center;
+  min-height:100vh;
+  padding:24px;
+}
+
+/* Panel frame (like the screenshot’s central box) */
+.panel{
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-edge) 100%);
+  border: 1px solid #0d1215;
+  border-radius: 18px;
+  padding: var(--panel-pad);
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+}
+
+/* Fixed 3×5 grid */
+.card-grid{
+  display:grid;
+  grid-template-columns: repeat(5, var(--card-w));
+  grid-template-rows: repeat(3, var(--card-h));
+  gap: var(--gap);
+  justify-content:center;
+  align-content:center;
 }
 
 /* Card container */
-.card {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+.card{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
 }
 
-/* Card images */
-.card img {
-  width: 180px;       /* consistent card width */
-  height: 252px;      /* 7:10 aspect ratio */
-  object-fit: cover;  /* avoids stretching */
-  border-radius: 12px;
+.card img{
+  width: var(--card-w);
+  height: var(--card-h);
+  object-fit: cover;          /* no warping */
+  border-radius: 14px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
 }
 
-/* Tooltip (hidden by default) */
-.card-info {
-  position: absolute;
-  bottom: 110%; /* above the card */
+/* Tooltip above card */
+.card-info{
+  position:absolute;
+  bottom: 110%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
+  background: rgba(0,0,0,.85);
   padding: 8px 12px;
-  font-size: 14px;
   border-radius: 8px;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  font-size: 14px;
+  color:#fff;
+  opacity:0;
+  white-space:nowrap;
+  pointer-events:none;
+  transition: opacity .2s ease;
+  border: 1px solid rgba(255,255,255,.08);
 }
 
-/* Hover effect: zoom + lift */
-.card:hover img {
+/* Hover: zoom + lift */
+.card:hover img{
   transform: scale(1.15) translateY(-12px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 12px 26px rgba(0,0,0,.75);
+  filter: saturate(1.06);
+}
+.card:hover .card-info{ opacity:1; }
+
+/* Pagination bar */
+.pagebar{
+  margin-top: 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+  background: var(--accent);
+  color:#fff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.25), 0 6px 16px rgba(0,0,0,.35);
 }
 
-.card:hover .card-info {
-  opacity: 1;
+.page-label{
+  min-width: 120px;
+  text-align:center;
+  font-weight: 700;
+}
+
+/* Arrow buttons */
+.nav-btn{
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: #23323b;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.25);
+  transition: transform .12s ease, filter .12s ease;
+}
+.nav-btn:hover{ filter: brightness(1.15); }
+.nav-btn:active{ transform: translateY(1px); }
+.nav-btn[disabled]{
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+/* Optional Back button style (commented out in HTML) */
+.back-btn{
+  margin-top: 14px;
+  width: 100%;
+  background: #f8a73a;
+  color:#1c1c1c;
+  border:none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.25);
+  cursor:pointer;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; }
 }
