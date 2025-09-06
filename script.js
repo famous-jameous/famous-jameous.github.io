@@ -7,7 +7,7 @@ const TOTAL_CARDS = CARDS_PER_PAGE * TOTAL_PAGES; // 150
 
 /* Toggle this to use your real assets later */
 const USE_LOCAL_IMAGES = false;
-const LOCAL_IMAGE_PATH = (i) => `assets/card-${i}.png`; // put your files as /assets/card-1.png..card-150.png
+const LOCAL_IMAGE_PATH = (i) => `assets/card-${i}.webp`; // put your files as /assets/card-1.png..card-150.png
 
 /* Elements */
 const grid = document.getElementById('cardGrid');
@@ -124,3 +124,4 @@ function svgPlaceholder(id, w = 180, h = 252){
 
 /* Initial render */
 renderPage();
+
