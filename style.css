@@ -1,8 +1,8 @@
 /* Background + centering */
 :root{
-  --card-w: 80px;
-  --card-h: 107px;      /* ~7:10 ratio */
-  --gap: 15px;
+  --card-w: 180px;
+  --card-h: 252px;      /* ~7:10 ratio */
+  --gap: 24px;
   --panel-pad: 28px;
   --accent: #e1524b;    /* red page bar */
   --panel: #22323c;     /* dark blue-gray panel */
@@ -146,6 +146,7 @@ body{
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
