@@ -141,12 +141,12 @@
   {"id":140,"name":"Joker 140","rarity":"Legendary","description":"Protects streak","unlock":"To Unlock: Condition #140","image":"assets/card-140.webp"},
   {"id":141,"name":"Joker 141","rarity":"Common","description":"Boost next hand","unlock":"To Unlock: Condition #141","image":"assets/card-141.webp"},
   {"id":142,"name":"Joker 142","rarity":"Uncommon","description":"Upgrades discarded hand","unlock":"To Unlock: Condition #142","image":"assets/card-142.webp"},
-  {"id":143,"name":"Joker 143","rarity":"Rare","description":"Doubles a random bonus","unlock":"To Unlock: Condition #143","image":"assets/card-143.webp"},
-  {"id":144,"name":"Joker 144","rarity":"Epic","description":"Adds chips to straights","unlock":"To Unlock: Condition #144","image":"assets/card-144.webp"},
-  {"id":145,"name":"Joker 145","rarity":"Legendary","description":"Extra wild on flush","unlock":"To Unlock: Condition #145","image":"assets/card-145.webp"},
-  {"id":146,"name":"Joker 146","rarity":"Common","description":"Mult for pairs","unlock":"To Unlock: Condition #146","image":"assets/card-146.webp"},
-  {"id":147,"name":"Joker 147","rarity":"Uncommon","description":"Copy last bonus","unlock":"To Unlock: Condition #147","image":"assets/card-147.webp"},
-  {"id":148,"name":"Joker 148","rarity":"Rare","description":"Convert 1 card to wild","unlock":"To Unlock: Condition #148","image":"assets/card-148.webp"},
-  {"id":149,"name":"Joker 149","rarity":"Epic","description":"Reroll shop discount","unlock":"To Unlock: Condition #149","image":"assets/card-149.webp"},
-  {"id":150,"name":"Joker 150","rarity":"Legendary","description":"Protects streak","unlock":"To Unlock: Condition #150","image":"assets/card-150.webp"}
+  {"id":143,"name":"Astronomer","rarity":"Rare","description":"Doubles a random bonus","unlock":"To Unlock: Condition #143","image":"assets/card-143.webp"},
+  {"id":144,"name":"Burnt Joker","rarity":"Rare","description":"Adds chips to straights","unlock":"To Unlock: Condition #144","image":"assets/card-144.webp"},
+  {"id":145,"name":"Bootstraps","rarity":"Uncommon","description":"+2 Mult for every $5 you have","unlock":"To Unlock: Condition #145","image":"assets/card-145.webp"},
+  {"id":146,"name":"Canio","rarity":"Legendary","description":"This Joker gains X1 Mult when a face card is destroyed","unlock":"To Unlock: Find this Joker from the Soul card.","image":"assets/card-146.webp"},
+  {"id":147,"name":"Triboulet","rarity":"Legendary","description":"Played Kings and Queens each give X2 Mult when scored","unlock":"To Unlock: Find this Joker from the Soul card.","image":"assets/card-147.webp"},
+  {"id":148,"name":"Yorick","rarity":"Legendary","description":"This Joker gains X1 Mult every 23 cards discarded","unlock":"To Unlock: Find this Joker from the Soul card.","image":"assets/card-148.webp"},
+  {"id":149,"name":"Chicot","rarity":"Legendary","description":"Disables effect of every Boss Blind","unlock":"To Unlock: Find this Joker from the Soul card.","image":"assets/card-149.webp"},
+  {"id":150,"name":"Perkeo","rarity":"Legendary","description":"Creates a Negative copy of 1 random consumable card in your possession at the end of the shop","unlock":"To Unlock: Find this Joker from the Soul card.","image":"assets/card-150.webp"}
 ]
