@@ -16,56 +16,64 @@ const nextBtn = document.getElementById('nextBtn');
 const pageLabel = document.getElementById('pageLabel');
 
 let currentPage = 1;
+let cards = [];
 
-/* Create 150 "cards" worth of data */
-const cards = Array.from({ length: TOTAL_CARDS }, (_, idx) => {
-  const id = idx + 1;
-  return {
-    id,
-    name: `Joker ${id}`,
-    rarity: pickRarity(id),
-    // Use a generated SVG placeholder or a real asset path
-    image: USE_LOCAL_IMAGES ? LOCAL_IMAGE_PATH(id) : svgPlaceholder(id),
-    description: sampleDescription(id)
-  };
-});
+// === Load Card Data ===
+fetch('data/cards.json')
+  .then(res => res.json())
+  .then(data => {
+    cards = data; // already an array
+    renderPage(currentPage);
+    setupPagination();
+  })
+  .catch(err => console.error("Error loading cards:", err));
 
-/* Renders current page into the grid */
-function renderPage() {
-  const start = (currentPage - 1) * CARDS_PER_PAGE;
-  const slice = cards.slice(start, start + CARDS_PER_PAGE);
+// === Render Page ===
+function renderPage(pageNum) {
+  const start = (pageNum - 1) * CARDS_PER_PAGE;
+  const end = start + CARDS_PER_PAGE;
+  const pageCards = cards.slice(start, end);
 
-  grid.innerHTML = ''; // clear
+  const grid = document.querySelector('.card-grid');
+  grid.innerHTML = ''; // clear previous page
 
-  slice.forEach(card => {
-    const el = document.createElement('div');
-    el.className = 'card';
-    el.innerHTML = `
+  pageCards.forEach(card => {
+    const cardEl = document.createElement('div');
+    cardEl.className = 'card';
+    cardEl.innerHTML = `
       <img src="${card.image}" alt="${card.name}">
-      <div class="card-info"><strong>${card.name}</strong> • ${card.rarity}<br>${card.description}</div>
+      <div class="card-info">
+        <strong>${card.name}</strong><br>
+        <em>${card.rarity}</em><br>
+        ${card.description}
+      </div>
     `;
-    grid.appendChild(el);
+    grid.appendChild(cardEl);
   });
 
-  pageLabel.textContent = `Page ${currentPage}/${TOTAL_PAGES}`;
-  prevBtn.disabled = currentPage === 1;
-  nextBtn.disabled = currentPage === TOTAL_PAGES;
+  // update page label
+  document.querySelector('#page-num').textContent = `Page ${pageNum} / ${TOTAL_PAGES}`;
 }
 
-/* Pagination handlers */
-prevBtn.addEventListener('click', () => {
-  if (currentPage > 1) {
-    currentPage--;
-    renderPage();
-  }
-});
+// === Pagination Controls ===
+function setupPagination() {
+  const prevBtn = document.querySelector('#prev-page');
+  const nextBtn = document.querySelector('#next-page');
 
-nextBtn.addEventListener('click', () => {
-  if (currentPage < TOTAL_PAGES) {
-    currentPage++;
-    renderPage();
-  }
-});
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < TOTAL_PAGES) {
+      currentPage++;
+      renderPage(currentPage);
+    }
+  });
+}
 
 /* Also support keyboard arrows */
 window.addEventListener('keydown', (e) => {
@@ -73,29 +81,6 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') nextBtn.click();
 });
 
-/* Helpers */
-/* Fun rarity cycle */
-function pickRarity(i){
-  const pool = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary'];
-  return pool[i % pool.length];
-}
-
-/* Lightweight sample text */
-function sampleDescription(i){
-  const effects = [
-    'Boost next hand',
-    'Upgrades discarded hand',
-    'Doubles a random bonus',
-    'Adds chips to straights',
-    'Extra wild on flush',
-    'Mult for pairs',
-    'Copy last bonus',
-    'Convert 1 card to wild',
-    'Reroll shop discount',
-    'Protects streak'
-  ];
-  return effects[i % effects.length];
-}
 
 /* Generate a unique SVG image per card as a data URI */
 function svgPlaceholder(id, w = 180, h = 252){
@@ -124,3 +109,4 @@ function svgPlaceholder(id, w = 180, h = 252){
 
 /* Initial render */
 renderPage();
+
