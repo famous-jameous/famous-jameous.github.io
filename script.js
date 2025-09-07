@@ -1,14 +1,15 @@
 // === Config ===
 const CARDS_PER_PAGE = 15;   // 3 rows × 5 cols
-const TOTAL_PAGES = 10;      // 150 cards / 15 per page
 let currentPage = 1;
 let cards = [];
+let totalPages = 1;
 
 // === Load Card Data ===
 fetch('data/cards.json')
   .then(res => res.json())
   .then(data => {
     cards = data; // already an array
+    totalPages = Math.ceil(cards.length / CARDS_PER_PAGE);
     renderPage(currentPage);
     setupPagination();
   })
@@ -38,7 +39,11 @@ function renderPage(pageNum) {
   });
 
   // update page label
-  document.querySelector('#pageLabel').textContent = `Page ${pageNum}/${TOTAL_PAGES}`;
+  document.querySelector('#pageLabel').textContent = `Page ${pageNum}/${totalPages}`;
+
+  // enable/disable buttons
+  document.querySelector('#prevBtn').disabled = pageNum === 1;
+  document.querySelector('#nextBtn').disabled = pageNum === totalPages;
 }
 
 // === Pagination Controls ===
@@ -54,7 +59,7 @@ function setupPagination() {
   });
 
   nextBtn.addEventListener('click', () => {
-    if (currentPage < TOTAL_PAGES) {
+    if (currentPage < totalPages) {
       currentPage++;
       renderPage(currentPage);
     }
