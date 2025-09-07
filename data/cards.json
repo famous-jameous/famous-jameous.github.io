@@ -1,1 +1,37 @@
-
+[
+  {
+    "id": 1,
+    "name": "Burnt Joker",
+    "rarity": "Rare",
+    "description": "Upgrade the level of the first discarded poker hand each round",
+    "image": "assets/joker1.png"
+  },
+  {
+    "id": 2,
+    "name": "Lucky Joker",
+    "rarity": "Uncommon",
+    "description": "Boosts your chance of bonus multipliers",
+    "image": "assets/joker2.png"
+  },
+  {
+    "id": 3,
+    "name": "Wild Joker",
+    "rarity": "Legendary",
+    "description": "Turns one card wild every round",
+    "image": "assets/joker3.png"
+  },
+  {
+    "id": 4,
+    "name": "Chicot",
+    "rarity": "Common",
+    "description": "Adds small bonus when used in a pair",
+    "image": "assets/joker4.png"
+  },
+  {
+    "id": 5,
+    "name": "Fool’s Joker",
+    "rarity": "Epic",
+    "description": "Doubles the multiplier of the last hand played",
+    "image": "assets/joker5.png"
+  }
+]
