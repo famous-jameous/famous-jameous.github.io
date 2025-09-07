@@ -1,5 +1,5 @@
 [
-  {"id":1,"name":"Joker 1","rarity":"Common","description":"+4 Mult","unlock":"To Unlock: None","image":"assets/card-1.webp"},
+  {"id":1,"name":"Joker","rarity":"Common","description":"+4 Mult","unlock":"To Unlock: None","image":"assets/card-1.webp"},
   {"id":2,"name":"Joker 2","rarity":"Uncommon","description":"Upgrades discarded hand","unlock":"To Unlock: Condition #2","image":"assets/card-2.webp"},
   {"id":3,"name":"Joker 3","rarity":"Rare","description":"Doubles a random bonus","unlock":"To Unlock: Condition #3","image":"assets/card-3.webp"},
   {"id":4,"name":"Joker 4","rarity":"Epic","description":"Adds chips to straights","unlock":"To Unlock: Condition #4","image":"assets/card-4.webp"},
