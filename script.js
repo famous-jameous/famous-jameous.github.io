@@ -49,7 +49,7 @@ function renderPage(pageNum) {
     // info tooltip
     const info = document.createElement('div');
     info.className = 'card-info';
-    info.innerHTML = `<strong>${escapeHtml(card.name || 'Card')}</strong><br><em>${escapeHtml(card.rarity || '')}</em><br>${escapeHtml(card.description || '')}`;
+    info.innerHTML = `<strong>${escapeHtml(card.name || 'Card')}</strong><br><em>${escapeHtml(card.rarity || '')}</em><br>${escapeHtml(card.description || '')} <br>${escapeHtml(card.unlock || '')}`;
 
     cardEl.appendChild(img);
     cardEl.appendChild(info);
@@ -119,3 +119,4 @@ function escapeHtml(str){
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 }
+
