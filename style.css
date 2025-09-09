@@ -15,7 +15,27 @@ body{
   min-height:100vh;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:#eee;
+  text-align: center;
   background: radial-gradient(1200px 700px at 60% 40%, #3a4a54 0%, #202629 50%, #131516 100%);
+}
+
+h1, h2 {
+  margin: 0.5em 0;
+}
+
+/* Responsive image */
+img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
+
+/* Container for limiting width on large screens */
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
 }
 
 .stage{
@@ -146,6 +166,7 @@ body{
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
