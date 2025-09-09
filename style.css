@@ -1,6 +1,6 @@
 /* Background + centering */
 :root{
-  --card-w: 190px;
+  --card-w: 180px;
   --card-h: 252px;      /* ~7:10 ratio */
   --gap: 24px;
   --panel-pad: 28px;
@@ -166,6 +166,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
