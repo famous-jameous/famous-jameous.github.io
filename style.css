@@ -25,7 +25,6 @@ h1, h2 {
 
 /* Responsive image */
 img {
-  max-width: 90%;
   height: auto;
   display: block;
   margin: 1em auto;
@@ -166,6 +165,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
