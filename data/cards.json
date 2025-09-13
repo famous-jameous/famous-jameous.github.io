@@ -59,7 +59,7 @@
   {"id":58,"name":"Joker 58","rarity":"Rare","description":"Convert 1 card to wild","unlock":"To Unlock: Condition #58","image":"assets/card-58.webp"},
   {"id":59,"name":"Joker 59","rarity":"Epic","description":"Reroll shop discount","unlock":"To Unlock: Condition #59","image":"assets/card-59.webp"},
   {"id":60,"name":"Joker 60","rarity":"Legendary","description":"Protects streak","unlock":"To Unlock: Condition #60","image":"assets/card-60.webp"},
-  {"id":61,"name":"Joker 61","rarity":"Common","description":"Boost next hand","unlock":"To Unlock: Condition #61","image":"assets/card-61.webp"},
+  {"id":61,"name":"Joker 61","rarity":"Common","description":"Boost next hand","unlock":"To Unlock: Available from start. (Can only appear in the shop when  Gros Michel has destroyed itself in the current run.)","image":"assets/card-61.webp"},
   {"id":62,"name":"Joker 62","rarity":"Uncommon","description":"Upgrades discarded hand","unlock":"To Unlock: Condition #62","image":"assets/card-62.webp"},
   {"id":63,"name":"Joker 63","rarity":"Rare","description":"Doubles a random bonus","unlock":"To Unlock: Condition #63","image":"assets/card-63.webp"},
   {"id":64,"name":"Joker 64","rarity":"Epic","description":"Adds chips to straights","unlock":"To Unlock: Condition #64","image":"assets/card-64.webp"},
