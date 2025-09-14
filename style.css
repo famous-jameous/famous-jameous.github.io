@@ -96,7 +96,7 @@ img {
   /* allow wrapping */
   white-space: normal; 
   word-wrap: break-word;
-  max-width: 45ch;   /* adjust as needed */
+  max-width: 145ch;   /* adjust as needed */
   pointer-events:none;
   transition: opacity .2s ease;
   border: 1px solid rgba(255,255,255,.08);
@@ -168,6 +168,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
