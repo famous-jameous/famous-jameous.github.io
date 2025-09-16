@@ -82,8 +82,8 @@ img {
 }
 
 /* Tooltip above card */
-.card-info{
-  position:absolute;
+.card-info {
+  position: absolute;
   bottom: 110%;
   left: 50%;
   transform: translateX(-50%);
@@ -91,13 +91,17 @@ img {
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 14px;
-  color:#fff;
-  opacity:0;
+  color: #fff;
+  opacity: 0;
+
   /* allow wrapping */
-  white-space: normal; 
+  white-space: normal;
   word-wrap: break-word;
-  max-width: 800px;   /* adjust as needed */
-  pointer-events:none;
+
+  /* cap width at 2× card width */
+  max-width: calc(var(--card-w) * 2);
+
+  pointer-events: none;
   transition: opacity .2s ease;
   border: 1px solid rgba(255,255,255,.08);
 }
@@ -168,6 +172,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
