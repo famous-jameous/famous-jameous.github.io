@@ -99,7 +99,7 @@ img {
   word-wrap: break-word;
 
   /* cap width at 2× card width */
-  max-width: calc(var(--card-w) * 2);
+  max-width: 65ch;
 
   pointer-events: none;
   transition: opacity .2s ease;
@@ -172,6 +172,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
