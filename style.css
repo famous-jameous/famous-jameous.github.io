@@ -94,9 +94,19 @@ img {
   color: #fff;
   opacity: 0;
 
-  /* allow wrapping */
   white-space: normal;
   word-wrap: break-word;
+
+  /* Force it to expand horizontally */
+  display: block;
+  width: auto;
+  min-width: calc(var(--card-w) * 2); /* at least 2× card width */
+  max-width: calc(var(--card-w) * 2);   /* cap at 2× card width */
+
+  pointer-events: none;
+  transition: opacity .2s ease;
+  border: 1px solid rgba(255,255,255,.08);
+}
 
   /* cap width at 2× card width */
   max-width: 65ch;
@@ -172,6 +182,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
