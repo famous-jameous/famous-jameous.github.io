@@ -100,7 +100,7 @@ img {
   /* Force it to expand horizontally */
   display: block;
   width: auto;
-  min-width: calc(var(--card-w) * 2); /* at least 2× card width */
+  min-width: calc(var(--card-w) * 1.5); /* at least 2× card width */
   max-width: calc(var(--card-w) * 2);   /* cap at 2× card width */
 
   pointer-events: none;
@@ -182,6 +182,7 @@ img {
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; }
 }
+
 
 
 
